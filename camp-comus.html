@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camp Comus | Farm Camping near Sugarloaf Mountain, Maryland</title>
+<meta name="description" content="Camp Comus is a family owned, 50 acre farm campground in Barnesville, Maryland. RV and tent sites, rescue animals, trails and sunsets over Sugarloaf Mountain. Open all year.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --pasture:#2e4a2a;
+  --pasture-deep:#1f3420;
+  --meadow:#6f8f3e;
+  --sage:#dfe5cf;
+  --sunset:#e0843a;
+  --sunset-deep:#c4651f;
+  --peach:#f7dcc0;
+  --cream:#f8f3e9;
+  --paper:#fffdf8;
+  --ink:#1d2219;
+  --muted:#5d6655;
+  --line:#e4dccb;
+  --radius:22px;
+  --shadow:0 18px 40px -18px rgba(31,52,32,.35);
+  --ease:cubic-bezier(.22,.8,.26,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:"Instrument Sans",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;line-height:1.05;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--sunset);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1200px,100% - 40px);margin-inline:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sunset-deep)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;font:600 1rem "Instrument Sans",sans-serif;padding:15px 26px;border-radius:999px;text-decoration:none;transition:transform .3s var(--ease),background .3s,box-shadow .3s,color .3s}
+.btn-sun{background:var(--sunset);color:#fff;box-shadow:0 10px 24px -10px rgba(196,101,31,.8)}
+.btn-sun:hover{background:var(--sunset-deep);transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.55);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:#fff;color:var(--pasture)}
+.btn i{transition:transform .3s var(--ease)}
+.btn:hover i.fa-arrow-right{transform:translateX(4px)}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .35s,box-shadow .35s,padding .35s;padding:18px 0}
+.nav.scrolled{background:rgba(248,243,233,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:10px 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 1.35rem "Bricolage Grotesque";color:#fff;transition:color .35s}
+.logo span.mark{width:38px;height:38px;border-radius:12px;background:var(--sunset);display:grid;place-items:center;color:#fff;font-size:1rem}
+.nav.scrolled .logo{color:var(--pasture)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;font-weight:500;color:#fff;position:relative;transition:color .35s}
+.nav.scrolled .nav-links a{color:var(--ink)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:var(--sunset);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav .btn{padding:11px 20px}
+.burger{display:none;background:none;border:0;font-size:1.4rem;color:#fff;cursor:pointer;width:44px;height:44px}
+.nav.scrolled .burger{color:var(--pasture)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;padding-bottom:150px}
+.hero-img{position:absolute;inset:0;background-image:url("https://dxynby2r8cy0b.cloudfront.net/images/f_auto,c_limit,w_2560,q_auto:best/v1737920380/land-photos/hxdsqfyubrlocpb5a44g/camp-comus-llc-camp-comus-great-lawn.jpg"),url("https://dxynby2r8cy0b.cloudfront.net/images/f_auto,c_limit,w_1920,q_auto/v1737920380/land-photos/hxdsqfyubrlocpb5a44g/camp-comus-llc-camp-comus-great-lawn.jpg");background-position:center;background-size:cover;background-repeat:no-repeat;animation:heroIn 1.4s var(--ease) both}
+@keyframes heroIn{from{opacity:0}to{opacity:1}}
+/* light overlay: only a soft top shade for the nav and a darker band behind the text at the bottom */
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,30,18,.35) 0%,rgba(20,30,18,0) 22%,rgba(20,30,18,0) 50%,rgba(20,30,18,.55) 82%,rgba(20,30,18,.75) 100%)}
+.hero h1,.hero p.lead,.hero .eyebrow{text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.4fr .8fr;gap:40px;align-items:end}
+.hero h1{font-size:clamp(2.8rem,7.4vw,6.2rem);font-weight:800;margin:14px 0 18px}
+.hero h1 em{font-style:normal;color:var(--peach)}
+.hero p.lead{font-size:1.15rem;max-width:560px;opacity:.95}
+.hero .eyebrow{color:var(--peach)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.rating-card{justify-self:end;background:rgba(255,253,248,.95);color:var(--ink);border-radius:var(--radius);padding:22px 24px;max-width:290px;box-shadow:var(--shadow)}
+.rating-card .big{font:800 2.6rem "Bricolage Grotesque";color:var(--pasture);line-height:1}
+.rating-card .row{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.rating-card small{color:var(--muted);display:block;line-height:1.3}
+.rating-card .stars{color:var(--sunset);font-size:.85rem;letter-spacing:2px}
+.rating-card p{font-size:.92rem;color:var(--muted)}
+.fade-up{opacity:0;transform:translateY(24px);animation:fadeUp .9s var(--ease) forwards}
+.d1{animation-delay:.2s}.d2{animation-delay:.35s}.d3{animation-delay:.5s}.d4{animation-delay:.7s}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+
+/* QUICK BOOK BAR */
+.quickbar{position:relative;z-index:5;margin-top:-80px}
+.quickbar form{background:var(--paper);border-radius:26px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.1fr 1fr 1fr .9fr auto;align-items:stretch;padding:10px}
+.qb-field{padding:12px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px;border-radius:16px;transition:background .25s}
+.qb-field:hover{background:var(--cream)}
+.qb-field:nth-last-child(2){border-right:0}
+.qb-field label{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;gap:7px;align-items:center}
+.qb-field label i{color:var(--sunset)}
+.qb-field input,.qb-field select{border:0;background:transparent;font:600 1rem "Instrument Sans";color:var(--ink);width:100%;padding:2px 0;outline:none}
+.quickbar .btn{border-radius:18px;margin-left:6px}
+
+/* FACTS */
+.facts{padding:70px 0 20px}
+.facts ul{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.facts li{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 16px;text-align:center;transition:transform .35s var(--ease),border-color .35s}
+.facts li:hover{transform:translateY(-4px);border-color:var(--meadow)}
+.facts i{font-size:1.35rem;color:var(--meadow);margin-bottom:10px}
+.facts strong{display:block;font:700 1.2rem "Bricolage Grotesque";color:var(--pasture)}
+.facts span{font-size:.88rem;color:var(--muted)}
+
+/* SECTIONS */
+section{padding:90px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:40px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(2.1rem,4.4vw,3.4rem);font-weight:800;color:var(--pasture);margin-top:8px;max-width:640px}
+.sec-head p{max-width:420px;color:var(--muted)}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:150px;gap:14px}
+.g-item{position:relative;overflow:hidden;border-radius:var(--radius);cursor:zoom-in;border:0;padding:0;background:var(--sage)}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease),filter .5s}
+.g-item:hover img{transform:scale(1.06)}
+.g-item::after{content:"\f065";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:50%;background:rgba(255,253,248,.92);color:var(--pasture);display:grid;place-items:center;font-size:.85rem;opacity:0;transform:scale(.7);transition:all .35s var(--ease)}
+.g-item:hover::after,.g-item:focus-visible::after{opacity:1;transform:scale(1)}
+.g1{grid-column:span 7;grid-row:span 3}
+.g2{grid-column:span 5;grid-row:span 2}
+.g3{grid-column:span 5;grid-row:span 1}
+.g4{grid-column:span 4;grid-row:span 2}
+.g5{grid-column:span 4;grid-row:span 2}
+.g6{grid-column:span 4;grid-row:span 2}
+.g-count{position:absolute;left:16px;bottom:16px;background:rgba(29,34,25,.7);color:#fff;font-size:.85rem;font-weight:600;padding:7px 14px;border-radius:999px;backdrop-filter:blur(4px)}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(18,24,16,.94);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox img{max-width:min(1200px,90vw);max-height:82vh;border-radius:14px;object-fit:contain;transform:scale(.96);transition:transform .4s var(--ease),opacity .25s}
+.lightbox.open img{transform:none}
+.lb-btn{position:absolute;width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:1.1rem;cursor:pointer;transition:background .25s,transform .25s}
+.lb-btn:hover{background:var(--sunset);transform:scale(1.06)}
+.lb-close{top:22px;right:22px}.lb-prev{left:22px}.lb-next{right:22px}
+.lb-count{position:absolute;bottom:24px;color:#fff;font-weight:600;opacity:.8}
+
+/* STAY (sticky split) */
+.stay{background:var(--paper);border-radius:40px;margin:0 14px}
+.stay-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.stay-intro{position:sticky;top:110px}
+.stay-intro h2{font-size:clamp(2.1rem,4.2vw,3.2rem);color:var(--pasture);font-weight:800;margin:10px 0 18px}
+.stay-intro p{color:var(--muted);margin-bottom:14px}
+.host-mini{display:flex;align-items:center;gap:14px;margin-top:26px;padding:16px;border-radius:18px;background:var(--cream)}
+.host-mini .av{width:54px;height:54px;border-radius:50%;background:var(--pasture);color:var(--peach);display:grid;place-items:center;font:800 1.2rem "Bricolage Grotesque";flex:none}
+.host-mini b{display:block}
+.host-mini span{font-size:.9rem;color:var(--muted)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tab{border:1.5px solid var(--line);background:transparent;padding:10px 18px;border-radius:999px;font:600 .95rem "Instrument Sans";cursor:pointer;color:var(--ink);display:flex;gap:8px;align-items:center;transition:all .3s var(--ease)}
+.tab:hover{border-color:var(--meadow)}
+.tab[aria-selected="true"]{background:var(--pasture);color:#fff;border-color:var(--pasture)}
+.panel{display:none;animation:panelIn .5s var(--ease)}
+.panel.active{display:block}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.amen{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.amen div{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:18px;border:1px solid var(--line);background:var(--paper);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.amen div:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:transparent}
+.amen i{width:42px;height:42px;flex:none;border-radius:12px;background:var(--sage);color:var(--pasture);display:grid;place-items:center;font-size:1rem}
+.amen b{display:block;font-size:1rem}
+.amen span{font-size:.9rem;color:var(--muted);line-height:1.45}
+.addons .price{margin-left:auto;font:700 1rem "Bricolage Grotesque";color:var(--sunset-deep);white-space:nowrap}
+.addons div{align-items:center}
+
+/* SUNSET BAND */
+.band{position:relative;margin:90px 14px 0;border-radius:40px;overflow:hidden;color:#fff;background:linear-gradient(120deg,#3b2d4a 0%,#9b4a3a 45%,var(--sunset) 80%,#f2b46b 100%)}
+.band .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:80px 0;align-items:center}
+.band h2{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:800;margin:10px 0 16px}
+.band .eyebrow{color:var(--peach)}
+.band p{opacity:.92}
+.ridge{position:absolute;inset:auto 0 0 0;height:90px;opacity:.35}
+.night-list{list-style:none;display:grid;gap:12px}
+.night-list li{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:16px 18px;border-radius:16px;backdrop-filter:blur(4px);transition:background .3s,transform .3s var(--ease)}
+.night-list li:hover{background:rgba(255,255,255,.22);transform:translateX(6px)}
+.night-list i{font-size:1.1rem;width:24px;text-align:center;color:var(--peach)}
+
+/* REVIEWS */
+.reviews-top{display:flex;align-items:center;gap:16px}
+.rv-nav{display:flex;gap:10px}
+.rv-nav button{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;color:var(--pasture);transition:all .3s var(--ease)}
+.rv-nav button:hover{background:var(--pasture);color:#fff;border-color:var(--pasture)}
+.rv-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:10px;scrollbar-width:none}
+.rv-track::-webkit-scrollbar{display:none}
+.rv{flex:0 0 calc((100% - 36px)/3);scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:16px;transition:transform .35s var(--ease),box-shadow .35s}
+.rv:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.rv .q{font-size:1.5rem;color:var(--sunset)}
+.rv p{font:600 1.12rem/1.45 "Instrument Sans"}
+.rv .who{margin-top:auto;display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--muted)}
+.rv .who b{color:var(--ink);display:block}
+.rv .tag{width:40px;height:40px;border-radius:50%;background:var(--sage);color:var(--pasture);display:grid;place-items:center;font-weight:700;flex:none}
+
+/* KNOW */
+.know{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.know div{padding:26px;border-radius:var(--radius);background:var(--pasture);color:#eef1e6;transition:transform .35s var(--ease)}
+.know div:hover{transform:translateY(-4px)}
+.know i{font-size:1.3rem;color:var(--peach);margin-bottom:14px}
+.know h3{font-size:1.25rem;color:#fff;margin-bottom:8px}
+.know p{font-size:.95rem;opacity:.88}
+
+/* BOOK */
+.book{background:var(--pasture-deep);color:#fff;border-radius:40px;margin:0 14px}
+.book-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:start}
+.book h2{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:800;margin:10px 0 16px}
+.book .eyebrow{color:var(--peach)}
+.book-side p{opacity:.85;margin-bottom:24px}
+.estimate{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:24px}
+.estimate h3{font-size:1.1rem;margin-bottom:14px;display:flex;gap:10px;align-items:center}
+.estimate h3 i{color:var(--peach)}
+.est-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.15);font-size:.95rem;opacity:.9}
+.est-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px}
+.est-total b{font:800 2rem "Bricolage Grotesque";color:var(--peach)}
+.est-note{font-size:.82rem;opacity:.65;margin-top:10px}
+.form-card{background:var(--paper);color:var(--ink);border-radius:28px;padding:34px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+.steps-label{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sunset-deep);margin:22px 0 12px;display:flex;align-items:center;gap:10px}
+.steps-label:first-child{margin-top:0}
+.steps-label span{width:24px;height:24px;border-radius:50%;background:var(--sunset);color:#fff;display:grid;place-items:center;font-size:.75rem}
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.types input{position:absolute;opacity:0;pointer-events:none}
+.types label{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 10px;border:1.5px solid var(--line);border-radius:16px;cursor:pointer;font-weight:600;font-size:.95rem;transition:all .3s var(--ease);text-align:center}
+.types label i{font-size:1.3rem;color:var(--meadow);transition:color .3s}
+.types label:hover{border-color:var(--meadow)}
+.types input:checked + label{border-color:var(--pasture);background:var(--pasture);color:#fff}
+.types input:checked + label i{color:var(--peach)}
+.types input:focus-visible + label{outline:3px solid var(--sunset);outline-offset:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.88rem;font-weight:600;color:var(--muted)}
+.field input,.field textarea{font:500 1rem "Instrument Sans";padding:13px 15px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);transition:border-color .25s,box-shadow .25s;width:100%}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--meadow);box-shadow:0 0 0 4px rgba(111,143,62,.18)}
+.field.err input{border-color:#c0392b}
+.hint{font-size:.83rem;color:var(--muted)}
+.warn{display:none;gap:8px;align-items:center;font-size:.86rem;color:#b03a2e;font-weight:600;margin-top:4px}
+.warn.show{display:flex}
+.stepper{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.stepper button{width:48px;height:48px;border:0;background:var(--cream);cursor:pointer;color:var(--pasture);font-size:.9rem;transition:background .25s}
+.stepper button:hover{background:var(--sage)}
+.stepper output{flex:1;text-align:center;font-weight:700}
+.toggles{display:flex;flex-wrap:wrap;gap:10px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip label{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--line);cursor:pointer;font-weight:500;font-size:.93rem;transition:all .25s var(--ease)}
+.chip label:hover{border-color:var(--meadow)}
+.chip input:checked + label{background:var(--sage);border-color:var(--meadow);color:var(--pasture);font-weight:600}
+.chip input:checked + label i.fa-plus::before{content:"\f00c"}
+.chip input:focus-visible + label{outline:3px solid var(--sunset);outline-offset:2px}
+.form-card .btn{width:100%;margin-top:24px;padding:17px}
+.success{display:none;text-align:center;padding:30px 10px}
+.success.show{display:block;animation:panelIn .6s var(--ease)}
+.success i{font-size:3rem;color:var(--meadow);margin-bottom:16px}
+.success h3{font-size:1.8rem;color:var(--pasture);margin-bottom:10px}
+.success p{color:var(--muted)}
+
+/* FOOTER */
+footer{padding:70px 0 30px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+footer .logo{color:var(--pasture)}
+footer p{color:var(--muted);font-size:.95rem;margin-top:14px}
+footer h4{font:700 1rem "Bricolage Grotesque";color:var(--pasture);margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:9px}
+footer ul a{text-decoration:none;color:var(--muted);transition:color .25s,padding .25s}
+footer ul a:hover{color:var(--sunset-deep);padding-left:4px}
+footer li i{width:20px;color:var(--meadow)}
+.copy{text-align:center;padding-top:26px;font-size:.9rem;color:var(--muted)}
+
+/* MOBILE BOOK BAR */
+.m-book{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:40;background:var(--paper);border-radius:20px;box-shadow:0 14px 34px -10px rgba(0,0,0,.35);padding:10px 10px 10px 18px;align-items:center;justify-content:space-between;transform:translateY(130%);transition:transform .4s var(--ease)}
+.m-book.show{transform:none}
+.m-book b{font:800 1.2rem "Bricolage Grotesque";color:var(--pasture)}
+.m-book small{color:var(--muted);display:block;font-size:.8rem}
+.m-book .btn{padding:13px 20px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media (max-width:1024px){
+  .facts ul{grid-template-columns:repeat(3,1fr)}
+  .quickbar form{grid-template-columns:1fr 1fr}
+  .qb-field{border-right:0;border-bottom:1px solid var(--line)}
+  .quickbar .btn{grid-column:1/-1;margin:8px 0 0;padding:16px}
+  .rv{flex-basis:calc((100% - 18px)/2)}
+  .stay-grid,.book-grid,.band .wrap{grid-template-columns:1fr;gap:36px}
+  .stay-intro{position:static}
+  .know{grid-template-columns:1fr 1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){
+  .nav-links,.nav .nav-cta{display:none}
+  .burger{display:block}
+  .nav-links.open{display:flex;position:fixed;top:0;left:0;right:0;flex-direction:column;background:var(--cream);padding:90px 28px 30px;gap:6px;box-shadow:0 20px 40px -20px rgba(0,0,0,.3);animation:panelIn .35s var(--ease)}
+  .nav-links.open a{color:var(--ink);font-size:1.2rem;display:block;padding:12px 0;border-bottom:1px solid var(--line)}
+  .nav-links.open ~ .burger,.nav.menu-open .burger,.nav.menu-open .logo{color:var(--pasture);position:relative;z-index:2}
+  .hero .wrap{grid-template-columns:1fr}
+  .rating-card{justify-self:start}
+  .hero{padding-bottom:120px}
+  .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
+  .g1{grid-column:span 2;grid-row:span 2}
+  .g2,.g3,.g4,.g5,.g6{grid-column:span 1;grid-row:span 1}
+  .g6{grid-column:span 2}
+  .m-book{display:flex}
+  body{padding-bottom:84px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  section{padding:70px 0}
+  .wrap{width:min(1200px,100% - 32px)}
+  .quickbar form{grid-template-columns:1fr}
+  .facts ul{grid-template-columns:1fr 1fr}
+  .amen,.know,.grid2,.f-grid{grid-template-columns:1fr}
+  .rv{flex-basis:88%}
+  .stay,.band,.book{border-radius:28px;margin-inline:8px}
+  .form-card{padding:24px 18px}
+  .types label{padding:14px 6px;font-size:.85rem}
+  .lb-prev,.lb-next{top:auto;bottom:16px}
+  .lb-prev{left:22%}.lb-next{right:22%}
+  .lb-count{bottom:30px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal,.fade-up{opacity:1;transform:none}
+  .hero-img{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Camp Comus home"><span class="mark"><i class="fa-solid fa-mountain-sun"></i></span>Camp Comus</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#stay">The Stay</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#know">Good to Know</a></li>
+      <li><a href="#book">Book</a></li>
+    </ul>
+    <a href="#book" class="btn btn-sun nav-cta">Book Your Stay</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" aria-label="Welcome">
+  <div class="hero-img" role="img" aria-label="The Great Lawn at Camp Comus"></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow fade-up d1"><i class="fa-solid fa-location-dot"></i> Barnesville, Maryland</span>
+      <h1 class="fade-up d2">Pitch a tent where the <em>sun sets on Sugarloaf.</em></h1>
+      <p class="lead fade-up d3">A family owned, 50 acre farm campground with friendly rescue animals, wooded trails and wide open lawns. RVs and tents welcome, all year round.</p>
+      <div class="hero-ctas fade-up d4">
+        <a href="#book" class="btn btn-sun">Check Availability <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#photos" class="btn btn-ghost"><i class="fa-regular fa-images"></i> See Photos</a>
+      </div>
+    </div>
+    <aside class="rating-card fade-up d4">
+      <div class="row">
+        <div class="big">93%</div>
+        <div><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><small>of campers recommend<br>75 ratings</small></div>
+      </div>
+      <p>Loved for its sunsets, warm hosts and the farm animals kids never want to leave.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- QUICK BOOK -->
+<div class="quickbar wrap">
+  <form id="quickForm" aria-label="Quick availability check">
+    <div class="qb-field">
+      <label for="qType"><i class="fa-solid fa-campground"></i> Stay type</label>
+      <select id="qType"><option value="tent">Tent</option><option value="rv">RV / Trailer</option><option value="van">Van / Car</option></select>
+    </div>
+    <div class="qb-field">
+      <label for="qIn"><i class="fa-regular fa-calendar"></i> Check in</label>
+      <input type="date" id="qIn">
+    </div>
+    <div class="qb-field">
+      <label for="qOut"><i class="fa-regular fa-calendar-check"></i> Check out</label>
+      <input type="date" id="qOut">
+    </div>
+    <div class="qb-field">
+      <label for="qGuests"><i class="fa-solid fa-user-group"></i> Guests</label>
+      <select id="qGuests"></select>
+    </div>
+    <button type="submit" class="btn btn-sun">Continue <i class="fa-solid fa-arrow-right"></i></button>
+  </form>
+</div>
+
+<!-- FACTS -->
+<div class="facts wrap">
+  <ul>
+    <li class="reveal"><i class="fa-solid fa-tree"></i><strong>50 acres</strong><span>of farm and forest</span></li>
+    <li class="reveal"><i class="fa-solid fa-campground"></i><strong>25 sites</strong><span>RV and tent</span></li>
+    <li class="reveal"><i class="fa-solid fa-people-group"></i><strong>Up to 30</strong><span>guests per site</span></li>
+    <li class="reveal"><i class="fa-solid fa-caravan"></i><strong>Under 35 ft</strong><span>rig length</span></li>
+    <li class="reveal"><i class="fa-solid fa-snowflake"></i><strong>Year round</strong><span>even in winter</span></li>
+    <li class="reveal"><i class="fa-solid fa-paw"></i><strong>Pets welcome</strong><span>horses too</span></li>
+  </ul>
+</div>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow"><i class="fa-solid fa-camera"></i> Take a look around</span><h2>Wide lawns, quiet woods and big skies.</h2></div>
+      <p>Tap any photo to view it full screen. Use your arrow keys or swipe to browse.</p>
+    </div>
+    <div class="gallery reveal" id="gallery">
+      <button class="g-item g1" data-i="0" aria-label="Open photo 1"><img src="https://dxynby2r8cy0b.cloudfront.net/images/f_auto,c_limit,w_1600,q_auto/v1744485865/dev-campground-photos/uiqawkpsoftvqhqpqdvl/camp-comus-llc-camp-comus-great-lawn.jpg" alt="Camp Comus grounds" loading="lazy"><span class="g-count"><i class="fa-regular fa-images"></i> 6 photos</span></button>
+      <button class="g-item g2" data-i="1" aria-label="Open photo 2"><img src="https://dxynby2r8cy0b.cloudfront.net/images/f_auto,c_limit,w_1200,q_auto/v1737920380/land-photos/skbqfytt2j9tdbvgbf6s/camp-comus-llc-camp-comus-great-lawn.jpg" alt="View across the farm" loading="lazy"></button>
+      <button class="g-item g3" data-i="2" aria-label="Open photo 3"><img src="https://dxynby2r8cy0b.cloudfront.net/images/f_auto,c_limit,w_1200,q_auto/v1744485867/dev-campground-photos/opvdcfsbqeabprluqhfl/camp-comus-llc-camp-comus-great-lawn.jpg" alt="Campground scenery" loading="lazy"></button>
+      <button class="g-item g4" data-i="3" aria-label="Open photo 4"><img src="https://dxynby2r8cy0b.cloudfront.net/images/f_auto,c_limit,w_1200,q_auto/v1744485866/dev-campground-photos/rwhaldmcjxuux0wbdoow/camp-comus-llc-camp-comus-great-lawn.jpg" alt="Camping area at Camp Comus" loading="lazy"></button>
+      <button class="g-item g5" data-i="4" aria-label="Open photo 5"><img src="https://dxynby2r8cy0b.cloudfront.net/images/f_auto,c_limit,w_1200,q_auto/v1744485866/dev-campground-photos/eolyqwulc0df0lv39som/camp-comus-llc-camp-comus-great-lawn.jpg" alt="Around the property" loading="lazy"></button>
+      <button class="g-item g6" data-i="5" aria-label="Open photo 6"><img src="https://dxynby2r8cy0b.cloudfront.net/images/f_auto,c_limit,w_1200,q_auto/v1745629910/campground-photos/j71h330khfax6tubprkg/camp-comus-llc-camp-comus-great-lawn.jpg" alt="The Great Lawn campsite" loading="lazy"></button>
+    </div>
+  </div>
+</section>
+
+<!-- THE STAY -->
+<section class="stay" id="stay">
+  <div class="wrap stay-grid">
+    <div class="stay-intro reveal">
+      <span class="eyebrow"><i class="fa-solid fa-house-chimney"></i> The stay</span>
+      <h2>Everything you need, nothing you don't.</h2>
+      <p>Set up on the Great Lawn with room for one tent or a whole group. A heated bathroom with a modern shower sits a two minute walk away in the barn, and power and water hookups are ready for your rig.</p>
+      <p>Park wherever suits you. There are no assigned spots, just space to spread out.</p>
+      <div class="host-mini">
+        <div class="av">J</div>
+        <div><b>Hosted by Juanita</b><span>With resident camp hosts Josh and Katie, who will greet you and help you settle in.</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="tabs" role="tablist" aria-label="Stay details">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p1" id="t1"><i class="fa-solid fa-plug"></i> Amenities</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2" tabindex="-1"><i class="fa-solid fa-horse"></i> Farm Life</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3" tabindex="-1"><i class="fa-solid fa-wand-magic-sparkles"></i> Extras</button>
+      </div>
+
+      <div class="panel active" role="tabpanel" id="p1" aria-labelledby="t1">
+        <div class="amen">
+          <div><i class="fa-solid fa-bolt"></i><p><b>Electric hookups</b><span>20, 30 and 50 amp power for RVs</span></p></div>
+          <div><i class="fa-solid fa-faucet-drip"></i><p><b>Water hookup</b><span>Potable water on site</span></p></div>
+          <div><i class="fa-solid fa-shower"></i><p><b>Hot shower and flush toilet</b><span>Renovated, heated in winter</span></p></div>
+          <div><i class="fa-solid fa-jug-detergent"></i><p><b>Washer and dryer</b><span>In the barn tack room</span></p></div>
+          <div><i class="fa-solid fa-wifi"></i><p><b>Fast Wi-Fi</b><span>Great for working remotely</span></p></div>
+          <div><i class="fa-solid fa-mug-hot"></i><p><b>Kitchen basics</b><span>Microwave, kettle, mini fridge and freezer</span></p></div>
+          <div><i class="fa-solid fa-fire"></i><p><b>Campfires allowed</b><span>Three fire rings plus a belly stove</span></p></div>
+          <div><i class="fa-solid fa-fire-burner"></i><p><b>Pavilion grill</b><span>Large communal grill and picnic tables</span></p></div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+        <div class="amen">
+          <div><i class="fa-solid fa-cow"></i><p><b>Rescue animals</b><span>Goats, ducks, geese, pigs and horses to meet</span></p></div>
+          <div><i class="fa-solid fa-person-hiking"></i><p><b>Miles of trails</b><span>Hike, bike, ride or simply wander the woods</span></p></div>
+          <div><i class="fa-solid fa-horse-head"></i><p><b>Bring your horse</b><span>4 stall barn, 5 pastures with self waterers</span></p></div>
+          <div><i class="fa-solid fa-seedling"></i><p><b>Farm market</b><span>Fresh eggs, flowers, produce and dried lavender</span></p></div>
+          <div><i class="fa-solid fa-dog"></i><p><b>Pet friendly</b><span>All pets welcome, including equines</span></p></div>
+          <div><i class="fa-solid fa-children"></i><p><b>Family friendly</b><span>Safe, peaceful and kid approved</span></p></div>
+        </div>
+      </div>
+
+      <div class="panel addons" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+        <div class="amen">
+          <div><i class="fa-solid fa-hot-tub-person"></i><p><b>Salt water hot tub</b><span>Fits 3, robes and towels provided</span></p><span class="price">$50/hr</span></div>
+          <div><i class="fa-solid fa-person-swimming"></i><p><b>Swimming pool</b><span>Mid April to end of October</span></p><span class="price">$60/hr</span></div>
+          <div><i class="fa-solid fa-horse"></i><p><b>Horse rides</b><span>Helmets provided, guided for beginners</span></p><span class="price">$50/hr</span></div>
+          <div><i class="fa-solid fa-person-biking"></i><p><b>E-bike or mountain bike</b><span>Ages 16 and up, waiver required</span></p><span class="price">$25/hr</span></div>
+        </div>
+        <p class="hint" style="margin-top:14px"><i class="fa-solid fa-circle-info"></i> Extras depend on availability. You can request them in the booking form below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUNSET BAND -->
+<div class="band">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow"><i class="fa-solid fa-sun"></i> Golden hour</span>
+      <h2>Stay for the sunset. Stay up for the stars.</h2>
+      <p>Walk behind the main house to the back pasture, pull up an Adirondack chair, and watch the sun drop behind Sugarloaf Mountain. The skies here are usually clear, so the show keeps going after dark.</p>
+    </div>
+    <ul class="night-list reveal">
+      <li><i class="fa-solid fa-mountain-sun"></i> Panoramic views of Sugarloaf Mountain</li>
+      <li><i class="fa-solid fa-star"></i> Clear night skies for stargazing</li>
+      <li><i class="fa-solid fa-fire-flame-curved"></i> Firewood provided by your hosts</li>
+      <li><i class="fa-solid fa-car-side"></i> Only about an hour from Washington, DC</li>
+    </ul>
+  </div>
+  <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90V60l120-18 140 10 170-40 160 30 120-14 200 26 180-34 170 22 180-8v56z" fill="#1f3420"/></svg>
+</div>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow"><i class="fa-solid fa-heart"></i> Guest stories</span><h2>66 reviews, one common theme: "we'll be back."</h2></div>
+      <div class="reviews-top rv-nav">
+        <button id="rvPrev" aria-label="Previous reviews"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="rvNext" aria-label="Next reviews"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="rv-track reveal" id="rvTrack" tabindex="0" aria-label="Guest reviews">
+      <article class="rv"><i class="fa-solid fa-quote-left q"></i><p>Very clean and peaceful, with clear views of the night sky.</p><div class="who"><span class="tag">DK</span><span><b>David K.</b>Large group, tents and camper</span></div></article>
+      <article class="rv"><i class="fa-solid fa-quote-left q"></i><p>This was our first camping trip ever and the girls had a great time.</p><div class="who"><span class="tag">JT</span><span><b>James T.</b>Tent, with kids</span></div></article>
+      <article class="rv"><i class="fa-solid fa-quote-left q"></i><p>Holding the baby goat was a clear highlight. Only about an hour from DC.</p><div class="who"><span class="tag">ML</span><span><b>Michael L.</b>Campervan, with pets</span></div></article>
+      <article class="rv"><i class="fa-solid fa-quote-left q"></i><p>It felt like we had the entire place to ourselves.</p><div class="who"><span class="tag">DG</span><span><b>David G.</b>Group trip, five couples</span></div></article>
+      <article class="rv"><i class="fa-solid fa-quote-left q"></i><p>A cozy place to stay after a day of hiking. 10/10 property.</p><div class="who"><span class="tag">DS</span><span><b>Dorian S.</b>Campervan, with pets</span></div></article>
+      <article class="rv"><i class="fa-solid fa-quote-left q"></i><p>The sunsets there are absolute magic!</p><div class="who"><span class="tag">AC</span><span><b>A. C.</b>Tent, with kids</span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- GOOD TO KNOW -->
+<section id="know" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow"><i class="fa-solid fa-circle-info"></i> Before you arrive</span><h2>Good to know.</h2></div>
+    </div>
+    <div class="know">
+      <div class="reveal"><i class="fa-solid fa-route"></i><h3>Drive a little further</h3><p>Continue about a quarter mile past where your GPS stops. Look for the black gates and the Comus Sky Farm sign.</p></div>
+      <div class="reveal"><i class="fa-solid fa-caravan"></i><h3>Rigs under 35 ft</h3><p>RVs, trailers and vans up to 35 feet fit well. RV parking is by the barn, tents go on the lawn.</p></div>
+      <div class="reveal"><i class="fa-solid fa-dog"></i><h3>Dog park visitors</h3><p>A private dog park runs on the land. When visitors arrive you'll be told to secure your pets, usually for about an hour.</p></div>
+      <div class="reveal"><i class="fa-solid fa-hand-holding-heart"></i><h3>Support the rescues</h3><p>A donation box in the barn helps feed the farm's always hungry rescue animals.</p></div>
+      <div class="reveal"><i class="fa-solid fa-money-bill-wave"></i><h3>Easy on site payments</h3><p>Pay for extras and farm market goods with Venmo, Zelle or the QR codes in the tack room.</p></div>
+      <div class="reveal"><i class="fa-solid fa-lock"></i><h3>Private address</h3><p>The exact address is shared once your booking is confirmed, to respect the host's privacy.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book" id="book">
+  <div class="wrap book-grid">
+    <div class="book-side reveal">
+      <span class="eyebrow"><i class="fa-solid fa-calendar-check"></i> Reserve your spot</span>
+      <h2>Your farm getaway starts here.</h2>
+      <p>Send your request in under a minute. Juanita's team will confirm your dates and share arrival details.</p>
+      <div class="estimate" aria-live="polite">
+        <h3><i class="fa-solid fa-receipt"></i> Your estimate</h3>
+        <div class="est-row"><span id="eNights">$76 x 0 nights</span><span id="eBase">$0</span></div>
+        <div class="est-row"><span>Extras (1 hr each)</span><span id="eExtras">$0</span></div>
+        <div class="est-total"><span>Estimated total</span><b id="eTotal">$0</b></div>
+        <p class="est-note">Sites from $76 per night. Final price is confirmed by your host.</p>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <form id="bookForm" novalidate>
+        <div class="steps-label"><span>1</span> How are you camping?</div>
+        <div class="types">
+          <div><input type="radio" name="type" id="ty-tent" value="tent" checked><label for="ty-tent"><i class="fa-solid fa-tent"></i>Tent</label></div>
+          <div><input type="radio" name="type" id="ty-rv" value="rv"><label for="ty-rv"><i class="fa-solid fa-caravan"></i>RV / Trailer</label></div>
+          <div><input type="radio" name="type" id="ty-van" value="van"><label for="ty-van"><i class="fa-solid fa-van-shuttle"></i>Van / Car</label></div>
+        </div>
+        <div class="field" id="rigField" style="margin-top:14px;display:none">
+          <label for="rig">Rig length (feet)</label>
+          <input type="number" id="rig" min="5" max="60" placeholder="e.g. 25">
+          <div class="warn" id="rigWarn"><i class="fa-solid fa-triangle-exclamation"></i> Sites fit vehicles under 35 ft. Please contact the host first.</div>
+        </div>
+
+        <div class="steps-label"><span>2</span> When and who</div>
+        <div class="grid2">
+          <div class="field"><label for="in">Check in</label><input type="date" id="in" required></div>
+          <div class="field"><label for="out">Check out</label><input type="date" id="out" required></div>
+        </div>
+        <div class="warn" id="dateWarn"><i class="fa-solid fa-triangle-exclamation"></i> Check out must be after check in.</div>
+        <div class="grid2" style="margin-top:14px">
+          <div class="field"><label id="gLbl">Guests</label>
+            <div class="stepper" role="group" aria-labelledby="gLbl">
+              <button type="button" id="gMinus" aria-label="Fewer guests"><i class="fa-solid fa-minus"></i></button>
+              <output id="gCount" aria-live="polite">2</output>
+              <button type="button" id="gPlus" aria-label="More guests"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+          <div class="field"><label>Bringing pets?</label>
+            <div class="toggles">
+              <span class="chip"><input type="checkbox" id="pets"><label for="pets"><i class="fa-solid fa-paw"></i> Yes, pets</label></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="steps-label"><span>3</span> Add extras (optional)</div>
+        <div class="toggles">
+          <span class="chip"><input type="checkbox" id="x-tub" data-price="50"><label for="x-tub"><i class="fa-solid fa-plus"></i> Hot tub $50</label></span>
+          <span class="chip"><input type="checkbox" id="x-pool" data-price="60"><label for="x-pool"><i class="fa-solid fa-plus"></i> Pool $60</label></span>
+          <span class="chip"><input type="checkbox" id="x-horse" data-price="50"><label for="x-horse"><i class="fa-solid fa-plus"></i> Horse ride $50</label></span>
+          <span class="chip"><input type="checkbox" id="x-bike" data-price="25"><label for="x-bike"><i class="fa-solid fa-plus"></i> E-bike $25</label></span>
+        </div>
+
+        <div class="steps-label"><span>4</span> Your details</div>
+        <div class="grid2">
+          <div class="field"><label for="name">Full name</label><input type="text" id="name" autocomplete="name" required></div>
+          <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" autocomplete="tel"></div>
+        </div>
+        <div class="field" style="margin-top:14px"><label for="email">Email</label><input type="email" id="email" autocomplete="email" required></div>
+        <div class="field" style="margin-top:14px"><label for="msg">Anything we should know? (optional)</label><textarea id="msg" rows="3" placeholder="Group size, arrival time, horses you're bringing..."></textarea></div>
+
+        <button type="submit" class="btn btn-sun">Request to Book <i class="fa-solid fa-arrow-right"></i></button>
+        <p class="hint" style="text-align:center;margin-top:12px"><i class="fa-solid fa-shield-halved"></i> No payment needed to send a request.</p>
+      </form>
+      <div class="success" id="success" role="status">
+        <i class="fa-solid fa-circle-check"></i>
+        <h3>Request sent!</h3>
+        <p id="successMsg">Thanks for choosing Camp Comus. We'll be in touch shortly to confirm your stay.</p>
+        <button class="btn btn-sun" id="again" style="margin-top:20px;width:auto">Make another request</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a href="#top" class="logo"><span class="mark"><i class="fa-solid fa-mountain-sun"></i></span>Camp Comus</a>
+        <p>A family owned farm campground at the foot of Sugarloaf Mountain. Peaceful, safe and open all year.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#photos">Photos</a></li>
+          <li><a href="#stay">The Stay</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#book">Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay Types</h4>
+        <ul>
+          <li><a href="#book">Tent Camping</a></li>
+          <li><a href="#book">RV and Trailers</a></li>
+          <li><a href="#book">Vans and Cars</a></li>
+          <li><a href="#book">Group Trips</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Find Us</h4>
+        <ul>
+          <li><i class="fa-solid fa-location-dot"></i> Barnesville, Maryland</li>
+          <li><i class="fa-solid fa-user"></i> Host: Juanita</li>
+          <li><i class="fa-solid fa-clock"></i> Open year round</li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">&copy; <span id="yr"></span> Camp Comus, LLC. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- MOBILE BOOK BAR -->
+<div class="m-book" id="mBook">
+  <div><b>From $76</b><small>per night</small></div>
+  <a href="#book" class="btn btn-sun">Book Now</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
+  <span class="lb-count" id="lbCount"></span>
+</div>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+  const PRICE = 76, MAX_G = 30, MAX_RIG = 35;
+
+  /* Nav */
+  const nav = $('#nav'), mBook = $('#mBook');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', scrollY > 40);
+    const book = $('#book').getBoundingClientRect();
+    mBook.classList.toggle('show', scrollY > innerHeight * .6 && (book.top > innerHeight || book.bottom < 0));
+  };
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  const burger = $('#burger'), links = $('#navLinks');
+  const setMenu = open => {
+    links.classList.toggle('open', open); nav.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  };
+  burger.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  /* Reveal */
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
+  $$('.reveal').forEach((el,i) => { el.style.transitionDelay = (i % 3) * 80 + 'ms'; io.observe(el); });
+
+  /* Dates */
+  const iso = d => d.toISOString().split('T')[0];
+  const today = new Date(); const tmr = new Date(Date.now() + 864e5);
+  ['#qIn','#in'].forEach(s => $(s).min = iso(today));
+  ['#qOut','#out'].forEach(s => $(s).min = iso(tmr));
+
+  /* Quick bar guests */
+  const qg = $('#qGuests');
+  for(let i=1;i<=MAX_G;i++) qg.add(new Option(i + (i===1?' guest':' guests'), i));
+  qg.value = 2;
+
+  /* Tabs */
+  const tabs = [...$$('.tab')];
+  const selectTab = t => {
+    tabs.forEach(x => { const on = x===t; x.setAttribute('aria-selected', on); x.tabIndex = on?0:-1;
+      const p = document.getElementById(x.getAttribute('aria-controls')); p.hidden = !on; p.classList.toggle('active', on); });
+  };
+  tabs.forEach((t,i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', e => {
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ const n = tabs[(i + (e.key==='ArrowRight'?1:-1) + tabs.length) % tabs.length]; selectTab(n); n.focus(); }
+    });
+  });
+
+  /* Lightbox */
+  const imgs = [...$$('.g-item img')].map(i => i.src.replace(/w_\d+/, 'w_1920'));
+  let cur = 0;
+  const lb = $('#lightbox'), lbImg = $('#lbImg');
+  let lastFocus;
+  const show = i => { cur = (i + imgs.length) % imgs.length; lbImg.style.opacity = 0;
+    setTimeout(() => { lbImg.src = imgs[cur]; lbImg.alt = 'Camp Comus photo ' + (cur+1); lbImg.style.opacity = 1; }, 150);
+    $('#lbCount').textContent = (cur+1) + ' / ' + imgs.length; };
+  const openLb = i => { lastFocus = document.activeElement; show(i); lb.classList.add('open'); document.body.style.overflow='hidden'; $('#lbClose').focus(); };
+  const closeLb = () => { lb.classList.remove('open'); document.body.style.overflow=''; lastFocus && lastFocus.focus(); };
+  $$('.g-item').forEach(b => b.addEventListener('click', () => openLb(+b.dataset.i)));
+  $('#lbClose').onclick = closeLb; $('#lbPrev').onclick = () => show(cur-1); $('#lbNext').onclick = () => show(cur+1);
+  lb.addEventListener('click', e => { if(e.target === lb) closeLb(); });
+  addEventListener('keydown', e => { if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') show(cur-1); if(e.key==='ArrowRight') show(cur+1); });
+  let sx = 0;
+  lb.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+  lb.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); });
+
+  /* Reviews */
+  const track = $('#rvTrack');
+  const step = () => track.querySelector('.rv').offsetWidth + 18;
+  $('#rvNext').onclick = () => track.scrollBy({left: step()});
+  $('#rvPrev').onclick = () => track.scrollBy({left: -step()});
+
+  /* Booking form */
+  let guests = 2;
+  const gOut = $('#gCount');
+  const setG = n => { guests = Math.min(MAX_G, Math.max(1, n)); gOut.textContent = guests; $('#gMinus').disabled = guests===1; $('#gPlus').disabled = guests===MAX_G; };
+  $('#gMinus').onclick = () => setG(guests-1); $('#gPlus').onclick = () => setG(guests+1); setG(2);
+
+  const rigField = $('#rigField'), rig = $('#rig'), rigWarn = $('#rigWarn');
+  const syncType = () => { const t = document.querySelector('input[name=type]:checked').value; rigField.style.display = t==='rv' ? 'flex' : 'none'; checkRig(); };
+  const checkRig = () => { const bad = rigField.style.display!=='none' && +rig.value > MAX_RIG; rigWarn.classList.toggle('show', bad); rig.parentElement.classList.toggle('err', bad); return !bad; };
+  $$('input[name=type]').forEach(r => r.addEventListener('change', syncType));
+  rig.addEventListener('input', checkRig);
+
+  const inEl = $('#in'), outEl = $('#out');
+  const nights = () => { if(!inEl.value || !outEl.value) return 0; const n = Math.round((new Date(outEl.value) - new Date(inEl.value)) / 864e5); return n > 0 ? n : 0; };
+  const checkDates = () => { const bad = inEl.value && outEl.value && nights() === 0; $('#dateWarn').classList.toggle('show', !!bad); outEl.parentElement.classList.toggle('err', !!bad); return !bad; };
+  inEl.addEventListener('change', () => { if(inEl.value){ const m = new Date(inEl.value); m.setDate(m.getDate()+1); outEl.min = iso(m); if(!outEl.value || nights()===0) outEl.value = iso(m);} update(); });
+  outEl.addEventListener('change', update);
+
+  const extras = [...$$('[data-price]')];
+  extras.forEach(x => x.addEventListener('change', update));
+  const money = n => '$' + n.toLocaleString('en-US');
+  function update(){
+    checkDates();
+    const n = nights(), base = n * PRICE, ex = extras.filter(x => x.checked).reduce((s,x) => s + +x.dataset.price, 0);
+    $('#eNights').textContent = money(PRICE) + ' x ' + n + (n===1?' night':' nights');
+    $('#eBase').textContent = money(base); $('#eExtras').textContent = money(ex); $('#eTotal').textContent = money(base + ex);
+  }
+  update();
+
+  /* Quick bar -> main form */
+  $('#quickForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const t = $('#qType').value; $('#ty-' + t).checked = true; syncType();
+    if($('#qIn').value) inEl.value = $('#qIn').value;
+    if($('#qOut').value) outEl.value = $('#qOut').value;
+    setG(+qg.value); update();
+    $('#book').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+    setTimeout(() => (inEl.value ? $('#name') : inEl).focus({preventScroll:true}), 700);
+  });
+  $('#qIn').addEventListener('change', () => { const v = $('#qIn').value; if(v){ const m = new Date(v); m.setDate(m.getDate()+1); $('#qOut').min = iso(m); if(!$('#qOut').value || $('#qOut').value <= v) $('#qOut').value = iso(m);} });
+
+  /* Submit */
+  const form = $('#bookForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true, first = null;
+    [['#in', v => v], ['#out', v => v], ['#name', v => v.trim().length > 1], ['#email', v => /^\S+@\S+\.\S+$/.test(v)]].forEach(([s, test]) => {
+      const el = $(s), good = test(el.value); el.parentElement.classList.toggle('err', !good);
+      if(!good){ ok = false; first = first || el; }
+    });
+    if(!checkDates()){ ok = false; first = first || outEl; }
+    if(!checkRig()){ ok = false; first = first || rig; }
+    if(!ok){ first.focus(); return; }
+    const n = nights();
+    $('#successMsg').textContent = `Thanks, ${$('#name').value.trim().split(' ')[0]}! Your request for ${n} night${n>1?'s':''} for ${guests} guest${guests>1?'s':''} has been sent. We'll email ${$('#email').value} shortly to confirm.`;
+    form.style.display = 'none'; $('#success').classList.add('show');
+  });
+  form.querySelectorAll('input').forEach(i => i.addEventListener('input', () => i.parentElement.classList.remove('err')));
+  $('#again').onclick = () => { form.reset(); setG(2); syncType(); update(); form.style.display = ''; $('#success').classList.remove('show'); };
+
+  $('#yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
